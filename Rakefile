@@ -2,7 +2,7 @@ $:.unshift(File.dirname(__FILE__) + "/lib")
 
 require 'rubygems'
 require 'rake'
-require 'echoe'
+require 'hoe'
 require 'whois'
 
 
@@ -20,20 +20,18 @@ if ENV['SNAPSHOT'].to_i == 1
 end
  
  
-Echoe.new(PKG_NAME, PKG_VERSION) do |p|
-  p.author        = "Simone Carletti"
-  p.email         = "weppos@weppos.net"
-  p.summary       = "A pure Ruby WHOIS client."
-  p.url           = "http://code.simonecarletti.com/whois"
-  p.project       = RUBYFORGE_PROJECT
+Hoe.spec(PKG_NAME) do |p|
+  self.version  = PKG_VERSION
 
-  p.need_zip      = true
-  p.rcov_options  = ["--main << README.rdoc -x Rakefile -x mocha -x rcov"]
-  p.rdoc_pattern  = /^(lib|CHANGELOG.rdoc|README.rdoc)/
+  self.author   = "Simone Carletti"
+  self.email    = "weppos@weppos.net"
+  self.summary  = "A pure Ruby WHOIS client."
+  self.url      = "http://code.simonecarletti.com/whois"
+  self.rubyforge_name = RUBYFORGE_PROJECT
 
-  p.development_dependencies += ["rake  ~>0.8",
-                                 "echoe ~>3.1",
-                                 "mocha ~>0.9"]
+  self.readme_file  = "README.rdoc" 
+  self.history_file = "CHANGELOG.rdoc"
+
   #p.add_development_dependency "rake",  "~>0.8.0"
   #p.add_development_dependency "echoe", "~>3.1.0"
   #p.add_development_dependency "mocha", "~>0.9.0"
